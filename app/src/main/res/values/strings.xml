@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">MovieTime App</string>
+    <string name="login_register_page">Login &amp; Register</string>
+    <string name="login_btn">Login</string>
+    <string name="register_btn">Register</string>
+    <string name="welcome_message">Welcome back! Glad to see you, Again!</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="forget_password">Forget password?</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register_now">Register Now</string>
+    <string name="new_user_join_us_now">New User? Join Us Now!</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="forgetMessage">Don\'t worry! It occurs. Please enter the email address linked with your account.</string>
+    <string name="send_code">Send Code</string>
+    <string name="remember_password">Remember Password?</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="otp_message">Enter the verification code we just send on your email address.</string>
+    <string name="verify">Verify</string>
+    <string name="create_new_password">Create New Password</string>
+    <string name="create_message">Your new password must be unique from those previously used.</string>
+    <string name="new_password">New Password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="password_changed">Password Changed!</string>
+    <string name="passChange_message">Your password has been changed successfully.</string>
+    <string name="back_to_login">Back to Login</string>
+    <string name="welcome">Welcome</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="brief_description_about_movie">Brief description about movie.</string>
+    <string name="very_long_des">Full description about movie.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
+</resources>
