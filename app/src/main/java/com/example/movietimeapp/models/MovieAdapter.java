@@ -1,5 +1,6 @@
 package com.example.movietimeapp.models;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,38 +9,50 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.movietimeapp.R;
 import com.example.movietimeapp.activity.MovieActivity;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+    private Context context;
+    private List<NewsHeadline> headlines;
 
-    List<Movie> movieList = new ArrayList<>();
 
-    public MovieAdapter(List<Movie> movieList) {
-        this.movieList = movieList;
+    public MovieAdapter(Context context, List<NewsHeadline> headlines, List<Movie> movieList) {
+        this.context = context;
+        this.headlines = headlines;
+
     }
+
 
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
+        View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.home_page_recycler, parent, false);
         return new MovieViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-        Movie movie = movieList.get(position);
-        holder.MovieImg.setImageResource(R.drawable.img);
-        holder.Title.setText(movie.getTitle());
-        holder.BriefDes.setText(movie.getBriefDes());
+
+        holder.Title.setText(headlines.get(position).getTitle());
+        holder.BriefDes.setText(headlines.get(position).getSource().getName());
+
+        if (headlines.get(position).getUrlToImage()!=null){
+            Glide.with(context)
+                    .asBitmap()
+                    .load(headlines.get(position).getUrlToImage())
+                    .into(holder.MovieImg);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return movieList.size();
+        return headlines.size();
     }
 
 

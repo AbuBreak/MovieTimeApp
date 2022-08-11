@@ -13,21 +13,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.movietimeapp.R;
+import com.example.movietimeapp.models.ApiInterface;
 import com.example.movietimeapp.models.Movie;
 import com.example.movietimeapp.models.MovieAdapter;
 import com.example.movietimeapp.models.MyPreference;
+import com.example.movietimeapp.models.NewsApiResponse;
+import com.example.movietimeapp.models.OnFetchDataListener;
 import com.example.movietimeapp.models.Register;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class HomePageActivity extends AppCompatActivity  {
     RecyclerView cardRecycler;
-    List<Movie> movieList = new ArrayList<>();
     MovieAdapter adapter;
     ImageView img_back;
     TextView txtUser;
     MyPreference pref;
+
+    Retrofit retrofit =new Retrofit.Builder()
+            .baseUrl("https://newsapi.org/v2/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +57,7 @@ public class HomePageActivity extends AppCompatActivity {
         String user = intent.getStringExtra("user");
         txtUser.setText("Welcome ".concat(user));
 
-        adapter = new MovieAdapter(movieList);
+        adapter = new MovieAdapter();
 
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,18 +73,32 @@ public class HomePageActivity extends AppCompatActivity {
         cardRecycler.setItemAnimator(new DefaultItemAnimator());
         cardRecycler.setAdapter(adapter);
 
-        InsertData();
+        getNewsHeadlines();
 
 
     }
+    public void getNewsHeadlines(OnFetchDataListener listener, String category, String query){
+        ApiInterface apiInterface=retrofit.create(ApiInterface.class);
+        Call<NewsApiResponse> call = apiInterface.callHeadlines(String.valueOf(R.string.api_key),"us",category,query);
+        try{
+            call.enqueue(new Callback<NewsApiResponse>() {
+                @Override
+                public void onResponse(Call<NewsApiResponse> call, Response<NewsApiResponse> response) {
+                    if(!response.isSuccessful()){
+                        Toast.makeText(HomePageActivity.this,"Error!",Toast.LENGTH_SHORT).show();
+                    }
 
-    private void InsertData() {
-        Movie movie = new Movie(R.drawable.img, "Marvel", "This is a brief description about marvel");
-        movieList.add(movie);
+                    listener.onFetchData(response.body().getArticles(),response.message());
+                }
 
-        Movie movie1 = new Movie(R.drawable.img, "Carter", "This is a brief description about movie");
-        movieList.add(movie1);
-
-        adapter.notifyDataSetChanged();
+                @Override
+                public void onFailure(Call<NewsApiResponse> call, Throwable t) {
+                    listener.onError("Request Failed");
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
 }

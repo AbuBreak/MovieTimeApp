@@ -32,5 +32,5 @@
     <string name="movie_title">Movie Title</string>
     <string name="brief_description_about_movie">Brief description about movie.</string>
     <string name="very_long_des">Full description about movie.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
-
+    <string name="api_key">8930455ee1d048dab0f0f5522f99b167</string>
 </resources>
