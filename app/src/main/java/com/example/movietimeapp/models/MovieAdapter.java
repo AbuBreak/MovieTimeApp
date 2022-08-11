@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -17,37 +18,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
-    private Context context;
-    private List<NewsHeadline> headlines;
+private Context context;
+private List<News> headlines;
 
-
-    public MovieAdapter(Context context, List<NewsHeadline> headlines, List<Movie> movieList) {
+    public MovieAdapter(Context context, List<News> headlines) {
         this.context = context;
         this.headlines = headlines;
-
     }
-
 
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context)
+        View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.home_page_recycler, parent, false);
         return new MovieViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MovieAdapter.MovieViewHolder holder, int position) {
+            holder.Title.setText(headlines.get(position).getTitle());
+            holder.BriefDes.setText(headlines.get(position).getSource().getName());
 
-        holder.Title.setText(headlines.get(position).getTitle());
-        holder.BriefDes.setText(headlines.get(position).getSource().getName());
+            if(headlines.get(position).getUrlToImage()!=null){
+                Glide.with(context)
+                        .asBitmap()
+                        .load(headlines.get(position).getUrlToImage())
+                        .into(holder.MovieImg);
+            }
 
-        if (headlines.get(position).getUrlToImage()!=null){
-            Glide.with(context)
-                    .asBitmap()
-                    .load(headlines.get(position).getUrlToImage())
-                    .into(holder.MovieImg);
-        }
     }
 
     @Override
@@ -55,12 +53,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return headlines.size();
     }
 
-
     public class MovieViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView MovieImg;
         public TextView Title, BriefDes ,txtUser;
-
+        public CardView cardView;
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -68,6 +65,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             Title = itemView.findViewById(R.id.txtMovie);
             BriefDes = itemView.findViewById(R.id.txtBrief);
             txtUser = itemView.findViewById(R.id.txtName);
+            cardView=itemView.findViewById(R.id.cardView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

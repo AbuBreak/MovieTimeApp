@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,15 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.movietimeapp.R;
-import com.example.movietimeapp.models.ApiInterface;
-import com.example.movietimeapp.models.Movie;
 import com.example.movietimeapp.models.MovieAdapter;
 import com.example.movietimeapp.models.MyPreference;
-import com.example.movietimeapp.models.NewsApiResponse;
+import com.example.movietimeapp.models.News;
+import com.example.movietimeapp.models.NewsResponse;
 import com.example.movietimeapp.models.OnFetchDataListener;
-import com.example.movietimeapp.models.Register;
+import com.example.movietimeapp.models.RequestManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,16 +35,14 @@ public class HomePageActivity extends AppCompatActivity  {
     ImageView img_back;
     TextView txtUser;
     MyPreference pref;
-
-    Retrofit retrofit =new Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
-
+    ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        RequestManager manager=new RequestManager(this);
+        manager.getNewsHeadlines(listener,"general",null);
 
         cardRecycler = findViewById(R.id.recyclerView);
         img_back = findViewById(R.id.img_back);
@@ -57,7 +54,9 @@ public class HomePageActivity extends AppCompatActivity  {
         String user = intent.getStringExtra("user");
         txtUser.setText("Welcome ".concat(user));
 
-        adapter = new MovieAdapter();
+        dialog= new ProgressDialog(this);
+        dialog.setTitle("Fetching news articles..");
+        dialog.show();
 
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,39 +65,26 @@ public class HomePageActivity extends AppCompatActivity  {
             }
         });
 
+    }
+private final OnFetchDataListener<NewsResponse>listener =new OnFetchDataListener<NewsResponse>() {
+    @Override
+    public void onFetchData(List<News> list, String message) {
+        showNews(list);
+        dialog.dismiss();
+    }
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        cardRecycler.setLayoutManager(layoutManager);
-
-        cardRecycler.setItemAnimator(new DefaultItemAnimator());
-        cardRecycler.setAdapter(adapter);
-
-        getNewsHeadlines();
-
+    @Override
+    public void onError(String message) {
 
     }
-    public void getNewsHeadlines(OnFetchDataListener listener, String category, String query){
-        ApiInterface apiInterface=retrofit.create(ApiInterface.class);
-        Call<NewsApiResponse> call = apiInterface.callHeadlines(String.valueOf(R.string.api_key),"us",category,query);
-        try{
-            call.enqueue(new Callback<NewsApiResponse>() {
-                @Override
-                public void onResponse(Call<NewsApiResponse> call, Response<NewsApiResponse> response) {
-                    if(!response.isSuccessful()){
-                        Toast.makeText(HomePageActivity.this,"Error!",Toast.LENGTH_SHORT).show();
-                    }
+};
 
-                    listener.onFetchData(response.body().getArticles(),response.message());
-                }
-
-                @Override
-                public void onFailure(Call<NewsApiResponse> call, Throwable t) {
-                    listener.onError("Request Failed");
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    private void showNews(List<News> list) {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        cardRecycler.setLayoutManager(layoutManager);
+        adapter =new MovieAdapter(this,list);
+        cardRecycler.setAdapter(adapter);
+        cardRecycler.setHasFixedSize(true);
     }
 
 }

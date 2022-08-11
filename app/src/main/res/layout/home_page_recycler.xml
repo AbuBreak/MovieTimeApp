@@ -12,13 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/card_bg"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:padding="5dp">
 
 
         <ImageView
             android:id="@+id/MovieImg"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="100dp"
             android:padding="10dp"
             android:src="@drawable/img"
@@ -30,12 +29,14 @@
             android:id="@+id/txtMovie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="8dp"
             android:text="@string/movie_title"
+            android:textAlignment="center"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/txtBrief"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.073"
+            app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toEndOf="@+id/MovieImg"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,8 +44,10 @@
             android:id="@+id/txtBrief"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
+            android:layout_marginStart="5dp"
             android:text="@string/brief_description_about_movie"
+            android:textColor="@color/purple_700"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.146"
