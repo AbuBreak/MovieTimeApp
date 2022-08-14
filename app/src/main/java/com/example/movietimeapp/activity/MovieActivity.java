@@ -2,20 +2,19 @@ package com.example.movietimeapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.movietimeapp.R;
-import com.example.movietimeapp.models.Movie1_Fragment;
-import com.example.movietimeapp.models.Movie2_Fragment;
+import com.example.movietimeapp.models.News;
 
 public class MovieActivity extends AppCompatActivity {
-ImageView img_back;
-TextView txtName;
+ImageView img_back,img_news;
+TextView txtName,txtContent;
+News headlines;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +29,16 @@ TextView txtName;
             }
         });
 
+
         txtName=findViewById(R.id.txtName);
+        txtContent=findViewById(R.id.txtContent);
+        img_news=findViewById(R.id.img_news);
 
-        Intent intent=getIntent();
-        String name=intent.getStringExtra("name");
+        headlines = (News) getIntent().getSerializableExtra("news");
 
-        txtName.setText(name);
+        txtName.setText(headlines.getTitle());
+        txtContent.setText(headlines.getContent());
+        Glide.with(this).asBitmap().load(headlines.getUrlToImage()).into(img_news);
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragContainer,new Movie1_Fragment(),null)
-                .commit();
     }
 }

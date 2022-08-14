@@ -23,7 +23,7 @@ public class RequestManager {
 
     public void getNewsHeadlines(OnFetchDataListener listener, String category, String query) {
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-        Call<NewsResponse> call = apiInterface.callHeadline("ua", category, query, context.getString(R.string.api_key));
+        Call<NewsResponse> call = apiInterface.callHeadline("us", category, query, context.getString(R.string.api_key));
         try {
             call.enqueue(new Callback<NewsResponse>() {
                 @Override

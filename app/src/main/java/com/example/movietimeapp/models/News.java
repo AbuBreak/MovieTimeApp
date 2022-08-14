@@ -1,16 +1,17 @@
 package com.example.movietimeapp.models;
 
+import java.io.Serializable;
 
-
-public class News {
+public class News implements Serializable {
     private Source source=null;
-    private String author;
-    private String title;
-    private String description;
-    private String url;
-    private String urlToImage;
-    private String publishedAt;
-    private String content;
+    private String author="";
+    private String title = "";
+    private String description= "";
+    private String url= "";
+    private String urlToImage= "";
+    private String publishedAt = "";
+    private String content ="";
+
 
     public Source getSource() {
         return source;
@@ -75,4 +76,5 @@ public class News {
     public void setContent(String content) {
         this.content = content;
     }
+
 }

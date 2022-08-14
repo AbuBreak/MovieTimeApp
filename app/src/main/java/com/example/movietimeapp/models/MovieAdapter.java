@@ -2,6 +2,7 @@ package com.example.movietimeapp.models;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +11,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.movietimeapp.R;
 import com.example.movietimeapp.activity.MovieActivity;
-import java.util.ArrayList;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder>{
 private Context context;
 private List<News> headlines;
+private SelectListener listener;
 
-    public MovieAdapter(Context context, List<News> headlines) {
+    public MovieAdapter(Context context, List<News> headlines, SelectListener listener) {
         this.context = context;
         this.headlines = headlines;
+        this.listener = listener;
     }
 
     @NonNull
@@ -45,6 +48,12 @@ private List<News> headlines;
                         .load(headlines.get(position).getUrlToImage())
                         .into(holder.MovieImg);
             }
+            holder.BriefDes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.ShowNews(headlines.get(position));
+                }
+            });
 
     }
 
@@ -58,6 +67,7 @@ private List<News> headlines;
         public ImageView MovieImg;
         public TextView Title, BriefDes ,txtUser;
         public CardView cardView;
+
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -67,14 +77,6 @@ private List<News> headlines;
             txtUser = itemView.findViewById(R.id.txtName);
             cardView=itemView.findViewById(R.id.cardView);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent =new Intent(v.getContext(), MovieActivity.class);
-                    intent.putExtra("name",Title.getText());
-                    v.getContext().startActivity(intent);
-                }
-            });
         }
     }
 

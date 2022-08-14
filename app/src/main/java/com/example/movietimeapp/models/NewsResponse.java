@@ -1,11 +1,11 @@
 package com.example.movietimeapp.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class NewsResponse {
+public class NewsResponse  implements Serializable {
     private String status;
     private int totalResults;
-
     private List<News> articles;
 
     public String getStatus() {
@@ -31,4 +31,5 @@ public class NewsResponse {
     public void setArticles(List<News> articles) {
         this.articles = articles;
     }
+
 }
