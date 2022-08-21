@@ -1,28 +1,16 @@
 package com.example.movietimeapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.example.movietimeapp.R;
 import com.example.movietimeapp.models.MyPreference;
 import com.example.movietimeapp.models.Register;
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -30,7 +18,6 @@ public class RegisterActivity extends AppCompatActivity {
     ImageView img_back;
     EditText editUsername, editEmail, editPassword, editConfirmPass;
     Button btnAgree;
-
 
     public static final String MyPref = "myPref";
 
@@ -41,6 +28,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         initViews();
 
+        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef= database.getReference("message");
+
+        myRef.setValue("Hello");*/
         MyPreference myPreference = new MyPreference(this);
 
         img_back.setOnClickListener(new View.OnClickListener() {
