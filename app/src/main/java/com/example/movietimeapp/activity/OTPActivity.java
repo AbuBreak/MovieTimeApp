@@ -43,7 +43,7 @@ public class OTPActivity extends AppCompatActivity {
                     Toast.makeText(OTPActivity.this, "Please enter valid code", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(OTPActivity.this, CreatePassActivity.class);
-                    intent.putExtra("user", new Register(register.getUsername(),register.getEmail(), register.getPassword()));
+                   // intent.putExtra("user", new Register(register.getUsername(),register.getEmail(), register.getPassword()));
                     startActivity(intent);
                 }
             }

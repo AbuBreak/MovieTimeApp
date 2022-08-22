@@ -1,9 +1,11 @@
 package com.example.movietimeapp.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +16,17 @@ import android.widget.Toast;
 import com.example.movietimeapp.R;
 import com.example.movietimeapp.models.MyPreference;
 import com.example.movietimeapp.models.Register;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     ImageView img_back;
@@ -23,17 +35,16 @@ public class LoginActivity extends AppCompatActivity {
     TextView txtForget, txtRegister;
     Button btnLogin;
 
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         initViews();
+        mAuth = FirebaseAuth.getInstance();
 
-        MyPreference preference = new MyPreference(this);
-
-        Register register = new Register(preference.getData(edit_email.getText().toString()).getUsername(),
-                preference.getData(edit_email.getText().toString()).getEmail(), preference.getData(edit_email.getText().toString()).getPassword());
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,29 +58,44 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (edit_email.getText().toString().isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Please enter your email!", Toast.LENGTH_SHORT).show();
+                    edit_email.setError("Email is required!");
+                    edit_email.requestFocus();
+
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(edit_email.getText().toString()).matches()) {
+                    edit_email.setError("Provide a valid email!");
+                    edit_email.requestFocus();
 
                 } else if (edit_pass.getText().toString().isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Please provide a password!", Toast.LENGTH_SHORT).show();
+                    edit_pass.setError("Password is required!");
+                    edit_pass.requestFocus();
 
-                } else if (!edit_email.getText().toString().equals(preference.getData(edit_email.getText().toString()).getEmail())) {
-                    Toast.makeText(LoginActivity.this, "User dose not exist!", Toast.LENGTH_SHORT).show();
+                } else if (edit_pass.length() < 6) {
+                    edit_pass.setError("Min password length is 6 characters!");
+                    edit_pass.requestFocus();
 
-                } else if (!edit_pass.getText().toString().equals(preference.getData(edit_email.getText().toString()).getPassword())) {
-                    Toast.makeText(LoginActivity.this, "Password Invalid! ", Toast.LENGTH_SHORT).show();
-
-                } else if (edit_email.getText().toString().equals(preference.getData(edit_email.getText().toString()).getEmail())
-                        && edit_pass.getText().toString().equals(preference.getData(edit_email.getText().toString()).getPassword())) {
-
-                    preference.saveData("ActiveUser", new Register(preference.getData(edit_email.getText().toString()).getUsername(),
-                            edit_email.getText().toString(), edit_pass.getText().toString()));
-                    Intent intent1 = new Intent(LoginActivity.this, HomePageActivity.class);
-                    intent1.putExtra("user", preference.getData("ActiveUser").getUsername());
-                    startActivity(intent1);
                 }
+                mAuth.signInWithEmailAndPassword(edit_email.getText().toString(), edit_pass.getText().toString())
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                    if (user.isEmailVerified()) {
+                                        Intent intent1 = new Intent(LoginActivity.this, HomePageActivity.class);
+                                        startActivity(intent1);
+                                    } else {
+                                        user.sendEmailVerification();
+                                        Toast.makeText(LoginActivity.this, "Please check your email to verify your account!", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
             }
         });
-
         txtForget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-
 
     private void initViews() {
         img_back = findViewById(R.id.img_back);

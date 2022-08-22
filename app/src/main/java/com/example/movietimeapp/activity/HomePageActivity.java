@@ -1,5 +1,6 @@
 package com.example.movietimeapp.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.movietimeapp.R;
 import com.example.movietimeapp.models.MovieAdapter;
@@ -17,8 +19,16 @@ import com.example.movietimeapp.models.MyPreference;
 import com.example.movietimeapp.models.News;
 import com.example.movietimeapp.models.NewsResponse;
 import com.example.movietimeapp.models.OnFetchDataListener;
+import com.example.movietimeapp.models.Register;
 import com.example.movietimeapp.models.RequestManager;
 import com.example.movietimeapp.models.SelectListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -27,8 +37,12 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
     MovieAdapter adapter;
     ImageView img_back;
     TextView txtUser;
-    MyPreference pref;
     ProgressDialog dialog;
+
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +55,30 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
         cardRecycler = findViewById(R.id.recyclerView);
         img_back = findViewById(R.id.img_back);
         txtUser = findViewById(R.id.txtUser);
-        pref = new MyPreference(this);
 
-        pref.getData("ActiveUser");
-        Intent intent = getIntent();
-        String user = intent.getStringExtra("user");
-        txtUser.setText("Welcome ".concat(user));
+        auth=FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference= FirebaseDatabase.getInstance().getReference("Users");
+        userID =user.getUid();
+
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Register registerUser = snapshot.getValue(Register.class);
+                if (registerUser!=null){
+                    String name = registerUser.getUsername();
+
+                    txtUser.setText("Welcome ".concat(name));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(HomePageActivity.this, "Something wrong happened!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
         dialog = new ProgressDialog(this);
         dialog.setTitle("Fetching news articles..");
@@ -55,6 +87,8 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                auth.signOut();
+                startActivity(new Intent(HomePageActivity.this,LoginActivity.class));
                 onBackPressed();
             }
         });
