@@ -32,7 +32,6 @@ public class ForgetActivity extends AppCompatActivity {
     private EditText forget_email;
     private TextView txtLogin;
     private Button btnSend;
-
     FirebaseAuth mAuth;
 
     @Override
@@ -41,7 +40,6 @@ public class ForgetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forget);
 
         initViews();
-        MyPreference MyPrf = new MyPreference(this);
 
         mAuth = FirebaseAuth.getInstance();
         img_back.setOnClickListener(new View.OnClickListener() {
@@ -84,8 +82,7 @@ public class ForgetActivity extends AppCompatActivity {
                             }
                         }
                     });
-                   /* intent.putExtra("email", new Register(MyPrf.getData(forget_email.getText().toString()).getUsername()
-                            , forget_email.getText().toString(), MyPrf.getData(forget_email.getText().toString()).getPassword()));*/
+
                 }
 
             }

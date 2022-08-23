@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(editEmail.getText().toString()).matches()) {
                     editEmail.setError("Please provide valid email!");
                     editEmail.requestFocus();
-
+//TODO: handle null pointer exception
                 } else if (editEmail.getText().toString().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
                     editEmail.setError("User with same email has already registered!");
                     editEmail.requestFocus();
