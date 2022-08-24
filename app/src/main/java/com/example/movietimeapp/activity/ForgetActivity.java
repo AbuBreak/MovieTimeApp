@@ -25,6 +25,7 @@ import com.example.movietimeapp.models.Register;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class ForgetActivity extends AppCompatActivity {
@@ -32,7 +33,10 @@ public class ForgetActivity extends AppCompatActivity {
     private EditText forget_email;
     private TextView txtLogin;
     private Button btnSend;
-    FirebaseAuth mAuth;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,8 +44,11 @@ public class ForgetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forget);
 
         initViews();
-
         mAuth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +67,7 @@ public class ForgetActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (forget_email.getText().toString().isEmpty()) {
                     forget_email.setError("Email is required!");
                     forget_email.requestFocus();

@@ -25,6 +25,8 @@ public class OTPActivity extends AppCompatActivity {
         setContentView(R.layout.activity_otpactivity);
 
         initViews();
+
+
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,7 +37,7 @@ public class OTPActivity extends AppCompatActivity {
         btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: initialize a STRING that contain the code
+
                 if (code1.getText().toString().isEmpty() || code2.getText().toString().isEmpty()
                         || code3.getText().toString().isEmpty() || code4.getText().toString().isEmpty()) {
                     Toast.makeText(OTPActivity.this, "Please enter valid code", Toast.LENGTH_SHORT).show();

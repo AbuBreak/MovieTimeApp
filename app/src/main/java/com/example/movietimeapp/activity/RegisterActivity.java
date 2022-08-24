@@ -51,29 +51,24 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (editUsername.getText().toString().isEmpty() ||
-                        editEmail.getText().toString().isEmpty() ||
-                        editPassword.getText().toString().isEmpty() ||
-                        editConfirmPass.getText().toString().isEmpty()) {
-
+                if (editUsername.getText().toString().isEmpty()) {
                     editUsername.setError("Required field!");
                     editUsername.requestFocus();
 
+                } else if (editEmail.getText().toString().isEmpty()) {
                     editEmail.setError("Required field!");
                     editEmail.requestFocus();
 
+                } else if (editPassword.getText().toString().isEmpty()) {
                     editPassword.setError("Required field!");
                     editPassword.requestFocus();
 
+                } else if (editConfirmPass.getText().toString().isEmpty()) {
                     editConfirmPass.setError("Required field");
                     editConfirmPass.requestFocus();
 
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(editEmail.getText().toString()).matches()) {
                     editEmail.setError("Please provide valid email!");
-                    editEmail.requestFocus();
-//TODO: handle null pointer exception
-                } else if (editEmail.getText().toString().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
-                    editEmail.setError("User with same email has already registered!");
                     editEmail.requestFocus();
 
                 } else if (!editPassword.getText().toString().equals(editConfirmPass.getText().toString())) {
@@ -89,6 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+
                                         Register register = new Register(editUsername.getText().toString()
                                                 , editEmail.getText().toString(), editPassword.getText().toString());
 
@@ -106,15 +102,13 @@ public class RegisterActivity extends AppCompatActivity {
                                                     }
                                                 });
                                     } else {
-                                        Toast.makeText(RegisterActivity.this, "Failed to register! Try again!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegisterActivity.this, "User is already registered!", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
-
-
             }
 
         });

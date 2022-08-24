@@ -33,9 +33,9 @@ public class CreatePassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_pass);
 
         initViews();
-
         mAuth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference("Users");
+
 
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,7 @@ public class CreatePassActivity extends AppCompatActivity {
                 } else if (new_pass.length() < 6) {
                     new_pass.setError("Min length should be 6 character!");
                     new_pass.requestFocus();
-                } else if (reference.child("password").equals(new_pass.getText().toString())) {
+                } else if (reference.child("").child("password").equals(new_pass.getText().toString())) {
                     new_pass.setError("You cannot enter an old password!");
                     new_pass.requestFocus();
 
@@ -67,7 +67,7 @@ public class CreatePassActivity extends AppCompatActivity {
                     confirm_pass.requestFocus();
 
                 } else if (new_pass.getText().toString().equals(confirm_pass.getText().toString())) {
-                    reference.child("password").setValue(new_pass.getText().toString());
+                    reference.child("").child("password").setValue(new_pass.getText().toString());
                     Intent intent = new Intent(CreatePassActivity.this, ConfirmResetActivity.class);
                     startActivity(intent);
                 }
