@@ -78,6 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else if (editPassword.length() < 6) {
                     editPassword.setError("Min Password length should be 6 characters!");
                     editPassword.requestFocus();
+
                 } else {
                     mAuth.createUserWithEmailAndPassword(editEmail.getText().toString(), editPassword.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

@@ -1,13 +1,18 @@
 package com.example.movietimeapp.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +27,7 @@ import com.example.movietimeapp.models.OnFetchDataListener;
 import com.example.movietimeapp.models.Register;
 import com.example.movietimeapp.models.RequestManager;
 import com.example.movietimeapp.models.SelectListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,12 +38,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class HomePageActivity extends AppCompatActivity implements SelectListener {
+public class HomePageActivity extends AppCompatActivity implements SelectListener, NavigationView.OnNavigationItemSelectedListener {
     RecyclerView cardRecycler;
     MovieAdapter adapter;
     ImageView img_back;
     TextView txtUser;
     ProgressDialog dialog;
+
+    private DrawerLayout drawer;
 
     private FirebaseAuth auth;
     private FirebaseUser user;
@@ -55,17 +63,30 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
         cardRecycler = findViewById(R.id.recyclerView);
         img_back = findViewById(R.id.img_back);
         txtUser = findViewById(R.id.txtUser);
+//TODO: RecyclerView couldn't work after adding DrawerLayout to the XML file.
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        auth=FirebaseAuth.getInstance();
+        drawer = findViewById(R.id.drawer);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+        auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
-        reference= FirebaseDatabase.getInstance().getReference("Users");
-        userID =user.getUid();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = user.getUid();
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Register registerUser = snapshot.getValue(Register.class);
-                if (registerUser!=null){
+                if (registerUser != null) {
                     String name = registerUser.getUsername();
 
                     txtUser.setText("Welcome ".concat(name));
@@ -79,7 +100,6 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
         });
 
 
-
         dialog = new ProgressDialog(this);
         dialog.setTitle("Fetching news articles..");
         dialog.show();
@@ -88,10 +108,11 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
             @Override
             public void onClick(View v) {
                 auth.signOut();
-                startActivity(new Intent(HomePageActivity.this,LoginActivity.class));
+                startActivity(new Intent(HomePageActivity.this, LoginActivity.class));
                 onBackPressed();
             }
         });
+
 
     }
 
@@ -120,5 +141,21 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
     public void ShowNews(News headlines) {
         startActivity(new Intent(HomePageActivity.this, MovieActivity.class)
                 .putExtra("news", headlines));
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_home:
+                startActivity(new Intent(this, HomePageActivity.class));
+                break;
+            case R.id.nav_map:
+                startActivity(new Intent(this, MapActivity.class));
+                break;
+            case R.id.nav_profile:
+                startActivity(new Intent(this, ProfileActivity.class));
+                break;
+        }
+        return true;
     }
 }

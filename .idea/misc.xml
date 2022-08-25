@@ -19,14 +19,20 @@
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/activity_home_page.xml" value="0.25" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/activity_map.xml" value="0.25" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/activity_movie.xml" value="0.25" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/activity_movie2.xml" value="0.25" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/activity_otpactivity.xml" value="0.25" />
+        <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/activity_profile.xml" value="0.2359375" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/drawer_header.xml" value="0.24895833333333334" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/fragment_movie1_.xml" value="0.25" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/fragment_movie2.xml" value="0.25" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/home_page_recycler.xml" value="0.25" />
+        <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/layout/nav_header.xml" value="0.24895833333333334" />
+        <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/menu/drawer_navigation_bar.xml" value="0.25" />
+        <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/menu/navigation_drawer.xml" value="0.20512820512820512" />
       </map>
     </option>
   </component>
