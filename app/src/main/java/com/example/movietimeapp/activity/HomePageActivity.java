@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,8 +45,8 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
     ImageView img_back;
     TextView txtUser;
     ProgressDialog dialog;
-
-    private DrawerLayout drawer;
+    Button btnProfile;
+  //  private DrawerLayout drawer;
 
     private FirebaseAuth auth;
     private FirebaseUser user;
@@ -63,8 +64,8 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
         cardRecycler = findViewById(R.id.recyclerView);
         img_back = findViewById(R.id.img_back);
         txtUser = findViewById(R.id.txtUser);
-//TODO: RecyclerView couldn't work after adding DrawerLayout to the XML file.
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        btnProfile= findViewById(R.id.btnProfile);
+     /*   Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer);
@@ -74,9 +75,7 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-
+        navigationView.setNavigationItemSelectedListener(this);*/
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -113,6 +112,15 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
             }
         });
 
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageActivity.this, ProfileActivity.class);
+                intent.putExtra("CurrentUser", userID );
+                startActivity(intent);
+
+            }
+        });
 
     }
 
