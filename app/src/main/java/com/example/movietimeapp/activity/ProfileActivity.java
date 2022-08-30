@@ -44,7 +44,7 @@ import java.util.UUID;
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView txtUsername, txtEmail;
-    private Button btnChange;
+    private Button btnChange,btnLocation;
     private ImageView img_back, img_profile;
 
     private final int STORAGE_PERMISSION_CODE = 165;
@@ -132,6 +132,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         });
         img_back.setOnClickListener(v -> onBackPressed());
+        btnLocation.setOnClickListener(v->
+        {
+            startActivity(new Intent(ProfileActivity.this,MapActivity.class));
+        });
     }
 
     private void openCamera() {
@@ -177,6 +181,7 @@ public class ProfileActivity extends AppCompatActivity {
         txtUsername = (TextView) findViewById(R.id.txt_username);
         txtEmail = (TextView) findViewById(R.id.txt_userEmail);
         btnChange = (Button) findViewById(R.id.btnChange);
+        btnLocation = (Button) findViewById(R.id.btnLocation);
         img_back = (ImageView) findViewById(R.id.img_back);
         img_profile = (ImageView) findViewById(R.id.img_profile);
 

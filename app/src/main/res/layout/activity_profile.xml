@@ -83,6 +83,13 @@
             android:layout_marginTop="160dp"
             android:text="Change" />
 
+        <Button
+            android:id="@+id/btnLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnChange"
+            android:layout_marginTop="5dp"
+            android:text="Get Location" />
     </RelativeLayout>
 
 

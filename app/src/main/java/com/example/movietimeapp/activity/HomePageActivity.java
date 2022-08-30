@@ -39,7 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class HomePageActivity extends AppCompatActivity implements SelectListener, NavigationView.OnNavigationItemSelectedListener {
+public class HomePageActivity extends AppCompatActivity implements SelectListener/*, NavigationView.OnNavigationItemSelectedListener*/ {
     RecyclerView cardRecycler;
     MovieAdapter adapter;
     ImageView img_back;
@@ -151,7 +151,7 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
                 .putExtra("news", headlines));
     }
 
-    @Override
+  /*  @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
@@ -165,5 +165,5 @@ public class HomePageActivity extends AppCompatActivity implements SelectListene
                 break;
         }
         return true;
-    }
+    }*/
 }
