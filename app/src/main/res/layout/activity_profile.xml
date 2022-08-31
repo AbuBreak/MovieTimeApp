@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.ProfileActivity">
 
-
-    <ImageView
-        android:id="@+id/img_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/back_btn"
-        android:padding="5dp"
-        android:src="@drawable/ic_arrow_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
@@ -40,6 +26,19 @@
 
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_btn"
+        android:padding="5dp"
+        android:src="@drawable/ic_arrow_back"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/linearLayout2"/>
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -81,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_userEmail"
             android:layout_marginTop="160dp"
-            android:text="Change" />
+            android:text="Change Password" />
 
         <Button
             android:id="@+id/btnLocation"
@@ -89,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/btnChange"
             android:layout_marginTop="5dp"
-            android:text="Get Location" />
+            android:text="Get My Location" />
     </RelativeLayout>
 
 
