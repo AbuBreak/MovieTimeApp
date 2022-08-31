@@ -18,7 +18,7 @@
         map:layout_constraintTop_toTopOf="parent"
         tools:context=".activity.MapActivity" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent"
         map:layout_constraintVertical_bias="1"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
