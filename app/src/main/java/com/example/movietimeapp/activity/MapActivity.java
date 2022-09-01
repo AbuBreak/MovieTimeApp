@@ -40,6 +40,7 @@ public class MapActivity extends FragmentActivity {
 
     SupportMapFragment supportMapFragment;
     private FusedLocationProviderClient client;
+    private FloatingActionButton btnGetLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +50,21 @@ public class MapActivity extends FragmentActivity {
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
-
+        btnGetLocation = findViewById(R.id.fab);
         client = LocationServices.getFusedLocationProviderClient(this);
 
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            getCurrentLocation();
-        } else {
-            ActivityCompat.requestPermissions(MapActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 12);
-        }
-
+        btnGetLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ActivityCompat.checkSelfPermission(MapActivity.this,
+                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    getCurrentLocation();
+                } else {
+                    ActivityCompat.requestPermissions(MapActivity.this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 12);
+                }
+            }
+        });
     }
 
 
@@ -67,9 +72,9 @@ public class MapActivity extends FragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 12) {
-                getCurrentLocation();
-            }
+            getCurrentLocation();
         }
+    }
 
 
     private void getCurrentLocation() {
@@ -91,41 +96,5 @@ public class MapActivity extends FragmentActivity {
             }
         });
     }
-   /* @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        *//*if (ContextCompat.checkSelfPermission(MapActivity.this,
-                Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(this, "You have already granted this permission", Toast.LENGTH_SHORT).show();
-        }else {
-            requestLocation();
-
-        }*//*
-
-
-    }*/
-
-  /*  private void requestLocation() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION)){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_LOCATION);
-        }else{
-            Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
-        }
-        
-    }*/
-
-    /*@Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == REQUEST_LOCATION ){
-            if (grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }*/
 }
 
