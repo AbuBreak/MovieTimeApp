@@ -2,9 +2,7 @@ package com.example.movietimeapp.models;
 
 import android.content.Context;
 import android.widget.Toast;
-
 import com.example.movietimeapp.R;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

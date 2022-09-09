@@ -6,6 +6,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import com.example.movietimeapp.R;
 import com.example.movietimeapp.models.Register;
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -131,10 +134,24 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         imageUri = data.getData();
         if (imageUri != null) {
             img_profile.setImageURI(imageUri);
+           /* StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            StorageReference photoReference= storageReference.child("image/"+UUID.randomUUID().toString());
+            final long ONE_MEGABYTE = 1024 * 1024;
+            photoReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    img_profile.setImageBitmap(bmp);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(), "No Such file or Path found!!", Toast.LENGTH_LONG).show();
+                }
+            });*/
         } else {
             Toast.makeText(this, "Permission denied!", Toast.LENGTH_SHORT).show();
         }
-
         if (imageUri != null) {
             mStorage.child("image/" + UUID.randomUUID().toString());
             mStorage.putFile(imageUri)
@@ -144,7 +161,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                             Toast.makeText(ProfileActivity.this, "ProfilePic Uploaded!", Toast.LENGTH_SHORT).show();
                         }
                     });
-        } else
+        } else{
             Toast.makeText(this, "Upload Failed", Toast.LENGTH_SHORT).show();
+        }
     }
 }

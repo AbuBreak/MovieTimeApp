@@ -8,14 +8,13 @@ public class Register implements Parcelable {
     private String Email;
     private String Password;
 
-    public Register(String name ,String email, String password) {
-        Username=name;
+    public Register(String username, String email, String password) {
+        Username = username;
         Email = email;
         Password = password;
+
     }
-
-
-    public Register(){
+    public Register() {
     }
 
     protected Register(Parcel in) {
@@ -23,7 +22,6 @@ public class Register implements Parcelable {
         Email = in.readString();
         Password = in.readString();
     }
-
     public static final Creator<Register> CREATOR = new Creator<Register>() {
         @Override
         public Register createFromParcel(Parcel in) {
@@ -35,7 +33,6 @@ public class Register implements Parcelable {
             return new Register[size];
         }
     };
-
     public String getUsername() {
         return Username;
     }
@@ -71,5 +68,6 @@ public class Register implements Parcelable {
         parcel.writeString(Username);
         parcel.writeString(Email);
         parcel.writeString(Password);
+
     }
 }

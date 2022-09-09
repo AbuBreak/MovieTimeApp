@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovieTime App</string>
+    <string name="app_name">NewsApp</string>
     <string name="login_register_page">Login &amp; Register</string>
     <string name="login_btn">Login</string>
     <string name="register_btn">Register</string>
