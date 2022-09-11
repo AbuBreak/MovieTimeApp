@@ -34,7 +34,7 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -55,7 +55,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-database:20.0.6'
     implementation 'com.google.firebase:firebase-storage:20.0.2'
-    implementation 'androidx.activity:activity-ktx:1.6.0-rc01'
+    implementation 'androidx.activity:activity-ktx:1.6.0-rc02'
     implementation 'androidx.fragment:fragment-ktx:1.6.0-alpha02'
     implementation 'com.github.dhaval2404:imagepicker:2.1'
 }
