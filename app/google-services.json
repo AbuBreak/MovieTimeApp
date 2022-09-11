@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "532687412513-l3b27g8v93ecm3emg44l4fjofgcclqug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.movietimeapp",
+            "certificate_hash": "04ae69be4e963468a4a737ee47758a7ed09e5c66"
+          }
+        },
+        {
           "client_id": "532687412513-5n6ppr1odtcmt1q874qlpo24gr48voa5.apps.googleusercontent.com",
           "client_type": 3
         }
