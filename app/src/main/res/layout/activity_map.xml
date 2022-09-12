@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MapActivity">
+    tools:context="com.malikproject.newsapp.activity.MapActivity">
 
     <fragment
         android:id="@+id/map"
@@ -16,7 +16,7 @@
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent"
-        tools:context=".activity.MapActivity" />
+        tools:context="com.malikproject.newsapp.activity.MapActivity" />
 
    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.HomePageActivity">
+    tools:context="com.malikproject.newsapp.activity.HomePageActivity">
 
 
     <ImageView
@@ -41,8 +41,9 @@
         android:layout_marginTop="32dp"
         android:text="@string/welcome"
         android:textColor="@color/black"
-        android:textSize="26sp"
+        android:textSize="@dimen/header_fonts_size"
         android:textStyle="bold"
+        android:fontFamily="@font/david_libre_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

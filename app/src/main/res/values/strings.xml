@@ -35,4 +35,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="remember_me">Remember me?</string>
+    <string name="agree_and_register">Agree and Register</string>
+    <string name="user_name_info">User_name</string>
+    <string name="user_email_info">User_Email</string>
+    <string name="change_password_info_btn">Change Password</string>
+    <string name="get_my_location_info_btn">Get My Location</string>
 </resources>

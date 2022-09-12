@@ -9,8 +9,8 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.movietimeapp"
-        minSdk 21
+        applicationId "com.malikproject.newsapp"
+        minSdk 23
         targetSdk 33
         versionCode 1
         versionName "1.0"

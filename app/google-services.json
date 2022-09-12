@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:532687412513:android:9213aeec878b6ba1a33260",
+        "mobilesdk_app_id": "1:532687412513:android:71c2076241f217d7a33260",
         "android_client_info": {
-          "package_name": "com.example.movietimeapp"
+          "package_name": "com.malikproject.newsapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "532687412513-l3b27g8v93ecm3emg44l4fjofgcclqug.apps.googleusercontent.com",
+          "client_id": "532687412513-5cm21oqegf1lg442bnavoa0vde7po6qm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.movietimeapp",
-            "certificate_hash": "04ae69be4e963468a4a737ee47758a7ed09e5c66"
+            "package_name": "com.malikproject.newsapp",
+            "certificate_hash": "0f24f0a8e5e40b785893c769d72e63362b8c2287"
           }
         },
         {

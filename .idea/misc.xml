@@ -3,6 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/drawable-v24/register_btn_bg.xml" value="0.1535" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/font-v26/main_font.xml" value="0.27589743589743587" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/font/dosis.xml" value="0.27589743589743587" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/font/main_font.xml" value="0.27589743589743587" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/activity_confirm_reset.xml" value="0.25" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/activity_create_pass.xml" value="0.25" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/activity_forget.xml" value="0.25" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/activity_home_page.xml" value="0.25" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/activity_map.xml" value="0.25" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/activity_movie.xml" value="0.25" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/activity_otpactivity.xml" value="0.25" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/activity_profile.xml" value="0.25" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/MovieTimeApp3/app/src/main/res/layout/home_page_recycler.xml" value="0.25" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/drawable-v24/border.xml" value="0.1535" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/drawable-v24/login_btn_bg.xml" value="0.1535" />
         <entry key="..\:/Traning/MovieTimeApp2/app/src/main/res/drawable-v24/register_btn_bg.xml" value="0.1535" />

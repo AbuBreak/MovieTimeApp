@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ConfirmResetActivity">
+    tools:context="com.malikproject.newsapp.activity.ConfirmResetActivity">
 
 
     <ImageView
@@ -23,9 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="@string/password_changed"
-        android:textSize="26sp"
+        android:textSize="@dimen/header_fonts_size"
         android:textStyle="bold"
         android:textColor="@color/black"
+        android:fontFamily="@font/david_libre_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -37,8 +38,9 @@
         android:layout_marginTop="16dp"
         android:text="@string/passChange_message"
         android:textAlignment="center"
-        android:textSize="14sp"
+        android:textSize="@dimen/remain_fonts_size"
         android:textStyle="bold"
+        android:fontFamily="@font/david_libre_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -53,7 +55,8 @@
         android:text="@string/back_to_login"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/remain_fonts_size"
+        android:fontFamily="@font/architects_daughter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
