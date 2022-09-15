@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,7 +38,7 @@ public class OTPActivity extends AppCompatActivity {
         btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                animateVerify();
                 if (code1.getText().toString().isEmpty() || code2.getText().toString().isEmpty()
                         || code3.getText().toString().isEmpty() || code4.getText().toString().isEmpty()) {
                     Toast.makeText(OTPActivity.this, "Please enter valid code", Toast.LENGTH_SHORT).show();
@@ -47,7 +49,10 @@ public class OTPActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void animateVerify(){
+        Animation animation = AnimationUtils.loadAnimation(this,R.anim.fade);
+        btnVerify.startAnimation(animation);
+    }
     private void initViews() {
 
         img_back = findViewById(R.id.img_back);

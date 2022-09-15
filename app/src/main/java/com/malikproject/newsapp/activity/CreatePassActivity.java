@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -43,6 +45,7 @@ public class CreatePassActivity extends AppCompatActivity {
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                animateReset();
                 if (new_pass.getText().toString().isEmpty()) {
                     new_pass.setError("Field is required!");
                     new_pass.requestFocus();
@@ -70,7 +73,10 @@ public class CreatePassActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void animateReset(){
+        Animation animation = AnimationUtils.loadAnimation(this,R.anim.fade);
+        btnReset.startAnimation(animation);
+    }
     private void initViews() {
 
         img_back = findViewById(R.id.img_back);

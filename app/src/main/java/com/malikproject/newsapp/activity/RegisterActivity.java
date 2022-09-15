@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -103,6 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     }
                                 }
                             });
+                    animateAgreeRegister();
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -112,6 +115,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    public void animateAgreeRegister(){
+        Animation animation = AnimationUtils.loadAnimation(this,R.anim.fade);
+        btnAgree.startAnimation(animation);
+    }
     private void initViews() {
         img_back = findViewById(R.id.img_back);
         editUsername = findViewById(R.id.editUserName);

@@ -4,13 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.malikproject.newsapp.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -46,6 +47,7 @@ public class MapActivity extends FragmentActivity {
         btnGetLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                animateLocation();
                 if (ActivityCompat.checkSelfPermission(MapActivity.this,
                         Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     getCurrentLocation();
@@ -66,6 +68,10 @@ public class MapActivity extends FragmentActivity {
         }
     }
 
+    public void animateLocation(){
+        Animation animation = AnimationUtils.loadAnimation(this,R.anim.fade);
+        btnGetLocation.startAnimation(animation);
+    }
 
     private void getCurrentLocation() {
         Task<Location> task = client.getLastLocation();

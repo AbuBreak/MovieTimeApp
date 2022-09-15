@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -76,10 +78,12 @@ public class ForgetActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(ForgetActivity.this, "Check your email to reset your password!", Toast.LENGTH_SHORT).show();
+                                animateSend();
                                 Intent intent = new Intent(ForgetActivity.this, OTPActivity.class);
                                 startActivity(intent);
 
                             } else {
+                                animateSend();
                                 Toast.makeText(ForgetActivity.this, "try again! Something went wrong!", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -91,6 +95,10 @@ public class ForgetActivity extends AppCompatActivity {
         });
     }
 
+    public void animateSend(){
+        Animation animation = AnimationUtils.loadAnimation(this,R.anim.move);
+        btnSend.startAnimation(animation);
+    }
     private void initViews() {
         img_back = findViewById(R.id.img_back);
         forget_email = findViewById(R.id.forget_email);

@@ -70,4 +70,37 @@
         app:layout_constraintTop_toBottomOf="@+id/btnLogin"
         app:layout_constraintVertical_bias="0.0" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+        app:layout_constraintVertical_bias="0.89">
+
+        <TextView
+            android:id="@+id/txt_en"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/david_libre_medium"
+            android:text="English  "
+            android:textColor="@color/black"
+            android:textSize="@dimen/remain_fonts_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" | "
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/txt_ar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="العربية  "
+            android:textColor="@color/black"
+            android:textSize="@dimen/remain_fonts_size" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

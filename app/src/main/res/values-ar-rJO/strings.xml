@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">أخبار العالم</string>
+    <string name="login_btn">تسجيل الدخول</string>
+    <string name="register_btn">إنشاء حساب جديد</string>
+    <string name="enter_your_email">البريد الإلكتروني</string>
+    <string name="enter_your_password">كلمة المرور</string>
+    <string name="forget_password">هل نسيت كلمة السر؟</string>
+    <string name="don_t_have_an_account">مستخدم جديد؟</string>
+    <string name="register_now">قم بالتسجيل الآن</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="new_user_join_us_now">إنشاء حساب جديد</string>
+    <string name="welcome_message">مرحباً بك مجدداً!</string>
+    <string name="login_register_page">تسجيل الدخول وإنشاء حساب جديد</string>
+    <string name="forgetMessage">البحث عن حسابك، قم بإدخال البريد الإلكتروني</string>
+    <string name="send_code" translatable="false">الحصول على الرمز</string>
+    <string name="remember_password">هل تذكرت كلمة المرور؟</string>
+    <string name="otp_verification">رمز التحقق</string>
+    <string name="otp_message">"رجاءً قم بإدخال رمز التحقق المرسل الى البريد الإلكتروني المدخل "</string>
+    <string name="verify">تأكيد</string>
+    <string name="create_new_password">كلمة المرور الجديدة</string>
+    <string name="create_message">لا يمكنك إدخال كلمة مرور سابقة!</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="reset_password">إعادة تعيين كلمة المرور</string>
+    <string name="password_changed">تم تغيير كلمة المرور بنجاح!</string>
+    <string name="passChange_message">لقد تم تغيير كلمة المرور بنجاح</string>
+    <string name="back_to_login">العودة الى تسجيل الدخول</string>
+    <string name="welcome">مرحبا</string>
+    <string name="movie_title">عنوان الخبر</string>
+    <string name="brief_description_about_movie">تفاصيل الخبر</string>
+    <string name="api_key">8930455ee1d048dab0f0f5522f99b167</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="remember_me">تذكّرني؟</string>
+    <string name="agree_and_register">تأكيد وتسجيل</string>
+    <string name="user_name_info">"اسم المستخدم "</string>
+    <string name="user_email_info">البريد الإلكتروني</string>
+    <string name="change_password_info_btn">تغيير كلمة المرور</string>
+    <string name="get_my_location_info_btn">تحديد موقعي</string>
+</resources>

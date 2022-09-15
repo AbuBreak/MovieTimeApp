@@ -30,8 +30,8 @@
     <string name="welcome">Welcome</string>
     <string name="movie_title">Movie Title</string>
     <string name="brief_description_about_movie">Brief description about movie.</string>
-    <string name="api_key">8930455ee1d048dab0f0f5522f99b167</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="api_key" translatable="false">8930455ee1d048dab0f0f5522f99b167</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="remember_me">Remember me?</string>

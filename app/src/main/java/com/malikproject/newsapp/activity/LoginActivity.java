@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -96,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
+                                    animateLogin();
                                     if (task.isSuccessful()) {
                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -107,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                                             Toast.makeText(LoginActivity.this, "Please check your email to verify your account!", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
+                                        animateLogin();
                                         Toast.makeText(LoginActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -135,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
+                                    animateLogin();
                                     if (task.isSuccessful()) {
                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -142,10 +147,12 @@ public class LoginActivity extends AppCompatActivity {
                                             Intent intent1 = new Intent(LoginActivity.this, HomePageActivity.class);
                                             startActivity(intent1);
                                         } else {
+                                            animateLogin();
                                             user.sendEmailVerification();
                                             Toast.makeText(LoginActivity.this, "Please check your email to verify your account!", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
+                                        animateLogin();
                                         Toast.makeText(LoginActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -169,6 +176,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public void animateLogin(){
+        Animation animation = AnimationUtils.loadAnimation(this,R.anim.fade);
+        btnLogin.startAnimation(animation);
     }
 
     private void StoreDataUsingPref(String email, String pass) {
